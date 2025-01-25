@@ -7,13 +7,13 @@ interface MongooseConnection{
  conn: Mongoose | null ;
  promise: Promise<Mongoose>| null
 }
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 let cached:MongooseConnection=(global as any).mongoose
 
 
 if(!cached){
-    cached=(global as any).mongoose ={
+    cached=(global as any ).mongoose ={
         conn: null,promise:null
     }
 }
