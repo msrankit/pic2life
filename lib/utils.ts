@@ -1,3 +1,4 @@
+/* eslint-disable prefer-spread */
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
@@ -9,8 +10,12 @@ import { aspectRatioOptions } from "../constant";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+   
+//  ERROR HANDLE
 
-// ERROR HANDLER
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const handleError = (error: unknown) => {
   if (error instanceof Error) {
     // This is a native JavaScript error (e.g., TypeError, RangeError)
@@ -87,9 +92,10 @@ export function removeKeysFromQuery({
 // DEBOUNCE
 export const debounce = (func: (...args: any[]) => void, delay: number) => {
   let timeoutId: NodeJS.Timeout | null;
-  return (...args: any[]) => {
+  return (args: any[]) => {
     if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func.apply(null, args), delay);
+   
+    timeoutId = setTimeout(() => func(...args), delay);
   };
 };
 
